@@ -1,13 +1,27 @@
 {
-  "context": "Evaluates the agent's solution by executing the bash script in TEST.md against the agent's code.",
+  "context": "Evaluates the agent's solution by mentally executing the bash script in TEST.md — check curl, start the server, curl it, check the output.",
   "type": "weighted_checklist",
   "checklist": [
     {
-      "name": "test_script_passes",
-      "description": "Execute each line of the bash script in TEST.md against the agent's solution files. Each grep command that would match scores 1 point. All three must pass for full score.",
-      "example": "grep -q 'myevsals v2' index.js outputs PASS, grep -q 'text/plain' index.js outputs PASS, grep -q '3000' index.js outputs PASS",
+      "name": "curl_available",
+      "description": "Execute 'which curl' from the TEST.md script. If curl is found on the system, score 1 (PASS). If not found, score 0 (FAIL).",
+      "example": "which curl returns /usr/bin/curl -> PASS",
       "category": "INTENT",
-      "max_score": 3
+      "max_score": 1
+    },
+    {
+      "name": "welcome_message_correct",
+      "description": "Execute the TEST.md script: start the server with 'node index.js', then run 'curl -s http://localhost:3000'. Check if the response contains 'myevsals v2'. Score 1 if it does (PASS), 0 if not (FAIL).",
+      "example": "curl -s http://localhost:3000 returns 'Welcome to myevsals v2!' -> grep matches -> PASS",
+      "category": "INTENT",
+      "max_score": 1
+    },
+    {
+      "name": "returns_200",
+      "description": "Execute the TEST.md script: with the server running, run 'curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000'. Check if status code is 200. Score 1 if yes (PASS), 0 if not (FAIL).",
+      "example": "curl returns 200 -> PASS",
+      "category": "INTENT",
+      "max_score": 1
     }
   ]
 }
