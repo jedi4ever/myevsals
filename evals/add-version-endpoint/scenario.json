@@ -1,0 +1,14 @@
+{
+  "type": "coding",
+  "fixture": {
+    "ref": "d46c660",
+    "type": "commit",
+    "exclude": [
+      "CLAUDE.md",
+      "tessl.json",
+      ".tessl/",
+      "TEST.md"
+    ],
+    "repoUrl": "https://github.com/jedi4ever/myevsals.git"
+  }
+}

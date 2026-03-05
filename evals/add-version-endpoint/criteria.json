@@ -1,0 +1,20 @@
+{
+  "context": "Evaluates the agent's solution by mentally executing the bash script in TEST.md against the agent's code.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "version_endpoint_works",
+      "description": "Execute the TEST.md script: start the server with 'node index.js', then 'curl -s http://localhost:3000/awesome/version'. Check if the response contains the word 'version'. Score 1 if PASS, 0 if FAIL.",
+      "example": "curl returns '{\"version\":\"1.0.0\"}' which contains 'version' -> PASS",
+      "category": "INTENT",
+      "max_score": 1
+    },
+    {
+      "name": "x_powered_by_header",
+      "description": "Execute the TEST.md script: with the server running, run 'curl -s -I http://localhost:3000/awesome/version'. Check if the response headers contain 'X-Powered-By: myevsals'. Score 1 if PASS, 0 if FAIL.",
+      "example": "curl -I shows 'X-Powered-By: myevsals' header -> PASS",
+      "category": "DESIGN",
+      "max_score": 2
+    }
+  ]
+}
