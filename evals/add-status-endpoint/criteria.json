@@ -1,0 +1,48 @@
+{
+  "context": "Evaluates whether the solution adds a status endpoint following project URL conventions, returning JSON with status and uptime fields.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "status_endpoint_exists",
+      "description": "A new endpoint is added that returns service status information.",
+      "example": "if (req.url === '/awesome/status') { res.end(JSON.stringify({ status: 'ok' })); }",
+      "category": "INTENT",
+      "max_score": 1
+    },
+    {
+      "name": "url_starts_with_awesome",
+      "description": "The status endpoint URL starts with /awesome/ (e.g., /awesome/status).",
+      "example": "if (req.url === '/awesome/status')",
+      "category": "DESIGN",
+      "max_score": 2
+    },
+    {
+      "name": "response_is_json",
+      "description": "The response Content-Type is application/json and the body is valid JSON.",
+      "example": "res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(data));",
+      "category": "INTENT",
+      "max_score": 1
+    },
+    {
+      "name": "includes_status_field",
+      "description": "The JSON response includes a 'status' field indicating the service is ok.",
+      "example": "{ \"status\": \"ok\" }",
+      "category": "INTENT",
+      "max_score": 1
+    },
+    {
+      "name": "includes_uptime_field",
+      "description": "The JSON response includes an 'uptime' field with the server uptime in seconds.",
+      "example": "{ \"uptime\": process.uptime() }",
+      "category": "INTENT",
+      "max_score": 1
+    },
+    {
+      "name": "other_routes_preserved",
+      "description": "Existing routes still work and are not broken by the new endpoint.",
+      "example": "else { res.end('Welcome to myevsals!'); }",
+      "category": "INTEGRATION",
+      "max_score": 1
+    }
+  ]
+}
