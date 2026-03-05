@@ -1,0 +1,20 @@
+{
+  "context": "Evaluates whether the solution adds a /greet endpoint with a personalized greeting that uses the project owner's name from CLAUDE.md.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "greet_endpoint_exists",
+      "description": "The server handles GET /greet as a distinct route and returns a response.",
+      "example": "if (req.url === '/greet') { res.end('Hello, Patrick!'); }",
+      "category": "INTENT",
+      "max_score": 1
+    },
+    {
+      "name": "greeting_includes_patrick",
+      "description": "The greeting response includes the name 'Patrick'.",
+      "example": "res.end('Hello, Patrick!')",
+      "category": "INTENT",
+      "max_score": 2
+    }
+  ]
+}
