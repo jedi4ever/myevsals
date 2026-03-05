@@ -6,7 +6,8 @@
     "exclude": [
       "CLAUDE.md",
       "tessl.json",
-      ".tessl/"
+      ".tessl/",
+      "TEST.md"
     ],
     "repoUrl": "https://github.com/jedi4ever/myevsals.git"
   }
