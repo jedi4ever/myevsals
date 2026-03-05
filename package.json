@@ -1,0 +1,9 @@
+{
+  "name": "myevsals",
+  "version": "1.0.0",
+  "description": "Hello world greeting app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
