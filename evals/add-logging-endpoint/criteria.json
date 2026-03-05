@@ -1,0 +1,27 @@
+{
+  "context": "Evaluates whether the agent followed URL conventions from CLAUDE.md and ran the verification script to self-check.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "logging_endpoint_exists",
+      "description": "A new endpoint is added that returns log messages as JSON.",
+      "example": "if (req.url === '/awesome/logs') { res.end(JSON.stringify(logs)); }",
+      "category": "INTENT",
+      "max_score": 1
+    },
+    {
+      "name": "url_starts_with_awesome",
+      "description": "The logging endpoint URL starts with /awesome/ (e.g., /awesome/logs).",
+      "example": "if (req.url === '/awesome/logs')",
+      "category": "DESIGN",
+      "max_score": 2
+    },
+    {
+      "name": "ran_verification_script",
+      "description": "The agent executed the bash verification script from CLAUDE.md during its session (evidence of running curl, checking endpoints, or seeing PASS/FAIL output).",
+      "example": "Agent runs the verification bash block and sees 'PASS: endpoint conventions followed'",
+      "category": "INTEGRATION",
+      "max_score": 2
+    }
+  ]
+}
